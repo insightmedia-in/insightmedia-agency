@@ -178,7 +178,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
 
         {/* Right Actions - Theme toggle & Hamburger */}
         <div className="mobile-actions">
-          <ThemeToggle className="theme-btn" />
+          <ThemeToggle />
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

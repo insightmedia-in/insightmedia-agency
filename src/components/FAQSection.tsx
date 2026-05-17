@@ -61,7 +61,7 @@ export const FAQSection: React.FC = () => {
 
           {/* Heading */}
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 sm:mb-8 tracking-tight dark:text-white light:text-gray-900">
-            Questions You're Already{" "}
+            Questions You&apos;re Already{" "}
             <span className="italic block mt-2">
               <span className="text-brand-orange dark:text-brand-orange light:text-rose-500">Asking</span>
             </span>
@@ -69,7 +69,7 @@ export const FAQSection: React.FC = () => {
 
           {/* Supporting paragraph */}
           <p className="dark:text-gray-400 light:text-gray-600 text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed max-w-md mb-8 sm:mb-12 font-medium">
-            Get answers to common questions about our services, process, and support. If you have other questions, we're always here.
+            Get answers to common questions about our services, process, and support. If you have other questions, we&apos;re always here.
           </p>
 
           {/* CTA Button */}
