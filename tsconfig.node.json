@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["tailwind.config.ts", "postcss.config.js", "next.config.js"]
+}

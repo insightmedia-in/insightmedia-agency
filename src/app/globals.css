@@ -1,0 +1,814 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:ital@0;1&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base Dark Mode */
+body {
+  @apply bg-brand-dark text-white overflow-x-hidden;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f19 100%);
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  padding: 0;
+}
+
+/* LIGHT MODE - Complete Theme Override */
+html.light body {
+  @apply bg-white text-gray-900;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  color-scheme: light;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+/* Apply smooth transition to all elements */
+html * {
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              text-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Mode - Section Backgrounds */
+html.light main {
+  @apply text-gray-900;
+  background: transparent;
+}
+
+html.light section {
+  background: transparent;
+}
+
+html.light .constellation-bg {
+  background-image: none;
+}
+
+/* ============================================ */
+/* CONSTELLATION/NETWORK BACKGROUND */
+/* ============================================ */
+.constellation-bg {
+  @apply fixed top-0 left-0 w-full h-full pointer-events-none -z-10;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 90, 31, 0.03) 0%, transparent 50%), 
+    radial-gradient(circle at 80% 70%, rgba(255, 90, 31, 0.02) 0%, transparent 50%);
+}
+
+/* Light mode constellation - soft pink instead of orange */
+html.light .constellation-bg {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 107, 107, 0.02) 0%, transparent 50%), 
+    radial-gradient(circle at 80% 70%, rgba(255, 107, 107, 0.015) 0%, transparent 50%);
+}
+
+/* ============================================ */
+/* TYPOGRAPHY UTILITIES */
+/* ============================================ */
+.hero-title {
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  word-spacing: 0.1em;
+}
+
+/* Mobile optimization for hero title */
+@media (max-width: 640px) {
+  .hero-title {
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+}
+
+.exceptional-italic {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  @apply text-brand-orange font-normal;
+}
+
+/* ============================================ */
+/* NAVBAR LOGO - STABLE PROFESSIONAL STYLING */
+/* ============================================ */
+
+/* Stable professional navbar logo */
+.navbar-logo {
+  width: 260px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Navbar layout stable - prevents shift on theme change */
+.logo-wrapper {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo placeholder for hydration */
+.navbar-logo-placeholder {
+  width: 260px;
+  height: 80px;
+}
+
+/* Light mode exceptional italic - use rose/pink instead */
+html.light .exceptional-italic {
+  @apply text-rose-500;
+}
+
+/* ============================================ */
+/* COMPONENT UTILITIES */
+/* ============================================ */
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.hover-scale {
+  @apply transform transition-transform hover:scale-105;
+}
+
+.glow-orange {
+  text-shadow: 0 0 20px rgba(255, 90, 31, 0.3);
+}
+
+html.light .glow-orange {
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.2);
+}
+
+.accent-gradient-text {
+  background: linear-gradient(135deg, #ff5a1f 0%, #ff7a4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+html.light .accent-gradient-text {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8c8c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================ */
+/* HEADER & NAVIGATION */
+/* ============================================ */
+
+/* Navbar top fix */
+header,
+.navbar,
+nav {
+  margin-top: 0 !important;
+  top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Fixed navbar */
+header {
+  position: fixed !important;
+  width: 100%;
+  z-index: 999 !important;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.light header {
+  @apply bg-transparent shadow-none border-0 !important;
+}
+
+/* Navigation Links */
+nav button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.light nav button {
+  @apply text-gray-700 hover:text-gray-900 font-medium;
+}
+
+/* Active indicator */
+html.light nav button.active {
+  @apply text-rose-600;
+}
+
+/* ============================================ */
+/* NAVBAR LOGO */
+/* ============================================ */
+
+/* Stable professional navbar logo wrapper */
+.logo-wrapper {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Logo image styling */
+.navbar-logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Placeholder while loading */
+.navbar-logo-placeholder {
+  width: 260px;
+  height: 80px;
+  background: transparent;
+}
+
+/* ============================================ */
+/* NAVBAR ACTIONS GROUP */
+/* ============================================ */
+
+/* Right navbar actions container */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  margin-right: 40px;
+}
+
+/* Hide nav-actions on mobile (below md breakpoint: 768px) */
+@media (max-width: 767px) {
+  .nav-actions {
+    display: none !important;
+  }
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+html.light .theme-toggle {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+html.light .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================ */
+/* NAVBAR VARIANTS - DESKTOP & MOBILE */
+/* ============================================ */
+
+/* Desktop Navbar - Unchanged Default Behavior */
+.desktop-navbar {
+  display: flex;
+}
+
+/* Mobile Navbar - Hidden by default */
+.mobile-navbar {
+  display: none;
+}
+
+/* Mobile First - Media Query for Mobile Breakpoint */
+@media (max-width: 767px) {
+  /* Hide Desktop Navbar */
+  .desktop-navbar {
+    display: none;
+  }
+
+  /* Show Mobile Navbar */
+  .mobile-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    overflow: hidden;
+    backdrop-filter: blur(18px);
+    background: rgba(10, 10, 10, 0.45);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    height: auto;
+  }
+
+  /* Light mode mobile navbar */
+  html.light .mobile-navbar {
+    background: rgba(255, 255, 255, 0.45);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Logo controlled width */
+  .mobile-navbar .logo {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Premium Logo Fit */
+  .mobile-navbar .logo img {
+    width: 165px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Right Actions Container */
+  .mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Theme Toggle Button */
+  .theme-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Menu Button (Hamburger) */
+  .menu-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 999px;
+    border: none;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Hero Section Spacing Fix */
+  .hero-section {
+    padding-top: 110px;
+  }
+}
+
+/* CTA button */
+.cta-button {
+  height: 54px;
+  padding: 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  white-space: nowrap;
+  
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 20px;
+  
+  background: linear-gradient(
+    180deg,
+    #ff6a00 0%,
+    #ff5a00 100%
+  );
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  
+  box-shadow:
+    0 10px 30px rgba(255, 102, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+  
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.cta-button:hover {
+  background: linear-gradient(
+    180deg,
+    #ff7a1a 0%,
+    #ff6200 100%
+  );
+  transform: translateY(-1px);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+html.light .cta-button {
+  background: linear-gradient(
+    180deg,
+    #ff6a00 0%,
+    #ff5a00 100%
+  );
+  box-shadow:
+    0 10px 30px rgba(255, 102, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+html.light .cta-button:hover {
+  background: linear-gradient(
+    180deg,
+    #ff7a1a 0%,
+    #ff6200 100%
+  );
+}
+
+/* ============================================ */
+/* BUTTONS */
+/* ============================================ */
+
+/* Primary Button Light Mode */
+html.light button:not(.logo-button):not(.theme-toggle) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light mode button with pink/rose accents */
+html.light .button-primary {
+  @apply bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white shadow-lg;
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.2);
+}
+
+html.light .button-primary:hover {
+  box-shadow: 0 8px 30px rgba(244, 63, 94, 0.3);
+}
+
+/* Secondary Button Light Mode */
+html.light .button-secondary {
+  @apply border-rose-500 text-gray-900 hover:bg-rose-50 hover:shadow-lg;
+  border-color: rgb(244, 63, 94);
+  box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1);
+}
+
+html.light .button-secondary:hover {
+  box-shadow: 0 8px 25px rgba(244, 63, 94, 0.2);
+}
+
+/* ============================================ */
+/* BADGES */
+/* ============================================ */
+/* Badge - Light Mode */
+html.light [class*="badge"] {
+  @apply border-rose-200 bg-gradient-to-r from-rose-50 to-pink-50 text-rose-600;
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+html.light .badge-pulse {
+  @apply bg-rose-400;
+}
+
+/* ============================================ */
+/* TEXT COLORS & HIERARCHY */
+/* ============================================ */
+/* Headings Light Mode */
+html.light h1,
+/* ============================================ */
+/* TEXT COLORS & HIERARCHY */
+/* ============================================ */
+/* Headings Light Mode */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: rgb(17, 24, 39);
+}
+
+/* Paragraph Text Light Mode */
+html.light p {
+  color: rgb(55, 65, 81);
+}
+
+/* ============================================ */
+/* BORDERS & DIVIDERS */
+/* ============================================ */
+
+/* Light mode borders will be handled by component-level light: variants */
+
+/* ============================================ */
+/* BACKGROUNDS */
+/* ============================================ */
+
+/* Light mode backgrounds will be handled by component-level light: variants */
+
+/* ============================================ */
+/* SHADOWS & GLOWS */
+/* ============================================ */
+
+html.light .shadow-brand-orange\/30 {
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.2);
+}
+
+html.light .hover\:shadow-brand-orange\/20:hover {
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.15);
+}
+
+html.light .hover\:shadow-brand-orange\/30:hover {
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.2);
+}
+
+/* ============================================ */
+/* ANIMATIONS */
+/* ============================================ */
+@keyframes fadeInLight {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+html.light {
+  animation: fadeInLight 0.6s ease-out;
+}
+
+/* ============================================ */
+/* SPECIFIC COMPONENT OVERRIDES */
+/* ============================================ */
+
+/* FAQ Section Light Mode */
+html.light .faq-item {
+  @apply border-gray-300 bg-white;
+}
+
+html.light .faq-item:hover {
+  @apply bg-gray-50;
+}
+
+/* Cards Light Mode */
+html.light .card {
+  @apply bg-white border-gray-200;
+}
+
+html.light .card:hover {
+  @apply bg-gray-50 shadow-lg;
+}
+
+/* Form Elements Light Mode */
+html.light input,
+html.light textarea,
+html.light select {
+  @apply bg-white border-gray-300 text-gray-900 placeholder-gray-500;
+}
+
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  @apply border-rose-500 ring-rose-500;
+}
+
+/* Links Light Mode */
+html.light a {
+  @apply text-rose-600 hover:text-rose-700;
+}
+
+html.light a:visited {
+  @apply text-rose-700;
+}
+
+/* ============================================ */
+/* PROJECTS SECTION LIGHT MODE */
+/* ============================================ */
+html.light .project-card {
+  @apply bg-gradient-to-br from-white to-gray-50 border-gray-200;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+html.light .project-card:hover {
+  box-shadow: 0 8px 30px rgba(244, 63, 94, 0.12);
+  @apply border-rose-300;
+}
+
+html.light .project-title {
+  @apply text-gray-900;
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================ */
+/* SERVICES SECTION LIGHT MODE */
+/* ============================================ */
+html.light .service-card {
+  @apply bg-gradient-to-br from-white via-gray-50 to-white border-gray-200;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+html.light .service-card:hover {
+  @apply border-rose-300;
+  box-shadow: 0 10px 30px rgba(244, 63, 94, 0.15);
+}
+
+html.light .service-title {
+  @apply text-gray-900;
+}
+
+html.light .service-title:hover {
+  @apply text-rose-600;
+}
+
+html.light .service-description {
+  @apply text-gray-600;
+}
+
+html.light .service-description:hover {
+  @apply text-gray-700;
+}
+
+html.light .service-glow {
+  background: linear-gradient(to bottom right, rgba(244, 63, 94, 0.08), rgba(236, 72, 153, 0.05));
+}
+
+/* ============================================ */
+/* FAQ SECTION LIGHT MODE */
+/* ============================================ */
+html.light .faq-item {
+  @apply bg-white border-gray-200;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+html.light .faq-item:hover {
+  @apply bg-gray-50 border-rose-300;
+  box-shadow: 0 4px 16px rgba(244, 63, 94, 0.1);
+}
+
+html.light .faq-question {
+  @apply text-gray-900;
+}
+
+html.light .faq-question:hover {
+  @apply text-rose-600;
+}
+
+html.light .faq-answer {
+  @apply text-gray-600;
+}
+
+html.light .faq-icon {
+  @apply border-rose-300;
+}
+
+html.light .faq-icon-active {
+  @apply bg-rose-100 border-rose-500;
+}
+
+/* ============================================ */
+/* NAVBAR LIGHT MODE */
+/* ============================================ */
+html.light nav {
+  @apply bg-white/60 border-gray-200/30;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+html.light nav button {
+  @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100/50;
+  border-color: transparent;
+}
+
+html.light nav button:hover {
+  border-color: rgb(244, 63, 94, 0.3);
+}
+
+/* ============================================ */
+/* BADGE LIGHT MODE */
+/* ============================================ */
+html.light .badge {
+  @apply bg-rose-50 border-rose-200 text-rose-600;
+}
+
+html.light .badge::before {
+  @apply bg-rose-400;
+}
+
+/* ============================================ */
+/* MOBILE RESPONSIVENESS OPTIMIZATIONS */
+/* ============================================ */
+
+/* Prevent horizontal scrolling and overflow on all devices */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Ensure proper text overflow handling on mobile */
+@media (max-width: 640px) {
+  h1, h2, h3, h4, h5, h6 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  p, span {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Reduce line-height on mobile for better text spacing */
+  h1 {
+    line-height: 1.1;
+  }
+
+  h2, h3 {
+    line-height: 1.15;
+  }
+
+  /* Ensure buttons don't overflow */
+  button {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Mobile-friendly section padding */
+  section {
+    @apply px-4;
+  }
+
+  /* Prevent text truncation in hero section */
+  .hero-title {
+    line-height: 1.1;
+    word-spacing: 0.05em;
+  }
+
+  /* Ensure badge doesn't overflow */
+  [class*="badge"] {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1023px) {
+  h1 {
+    line-height: 1.15;
+  }
+
+  section {
+    @apply px-6;
+  }
+}
+
+/* Prevent common mobile rendering issues */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure proper rendering of images and canvas on mobile */
+img, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mobile-friendly focus states */
+@media (hover: none) and (pointer: coarse) {
+  button:focus,
+  a:focus {
+    outline: 2px solid rgba(255, 90, 31, 0.5);
+    outline-offset: 2px;
+  }
+}
