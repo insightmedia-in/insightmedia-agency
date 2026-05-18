@@ -5,6 +5,7 @@ interface ButtonProps {
   onClick?: () => void;
   variant?: "primary" | "secondary";
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -12,6 +13,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   variant = "primary",
   className = "",
+  type = "button",
 }) => {
   const baseStyles =
     "font-bold text-xs xs:text-sm sm:text-base py-2.5 xs:py-3 sm:py-3 px-4 xs:px-5 sm:px-8 rounded-lg xs:rounded-xl sm:rounded-2xl transition-all duration-300 ease-in-out flex items-center justify-center gap-2 shadow-xl w-full sm:w-auto";
@@ -42,6 +44,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`${baseStyles} ${variants[variant]} ${className}`}
     >
