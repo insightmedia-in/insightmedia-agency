@@ -24,7 +24,7 @@ const clients: Client[] = [
 
 export const ProjectsSection: React.FC = () => {
   return (
-    <section className="relative z-10 px-4 xs:px-5 sm:px-6 py-16 sm:py-20 md:px-12 lg:px-20 max-w-7xl mx-auto" data-section="projects">
+    <section id="projects" className="relative z-10 px-4 xs:px-5 sm:px-6 py-16 sm:py-20 md:px-12 lg:px-20 max-w-7xl mx-auto" data-section="projects">
       {/* Section Header */}
       <div className="mb-10 sm:mb-16" data-purpose="clients-header">
         <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-3 sm:mb-4 leading-tight dark:text-white light:text-gray-900">

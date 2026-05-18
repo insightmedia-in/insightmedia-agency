@@ -73,7 +73,7 @@ export const ServicesSection: React.FC = () => {
   );
 
   return (
-    <section className="relative z-10 px-4 xs:px-5 sm:px-6 py-16 sm:py-24 md:py-32 md:px-12 lg:px-20 max-w-7xl mx-auto" data-section="services">
+    <section id="services" className="relative z-10 px-4 xs:px-5 sm:px-6 py-16 sm:py-24 md:py-32 md:px-12 lg:px-20 max-w-7xl mx-auto" data-section="services">
       {/* Ambient glow effects */}
       <div className="absolute -top-40 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-600/15 via-purple-600/10 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 right-1/4 w-96 h-96 bg-gradient-to-tl from-brand-orange/10 via-purple-600/10 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -97,6 +97,7 @@ export const ServicesSection: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-5 sm:gap-6 md:gap-8 max-w-2xl">
         {services.slice(3).map((service) => renderServiceCard(service))}
       </div>
+
     </section>
   );
 };

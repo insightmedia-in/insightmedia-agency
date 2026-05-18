@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Badge } from "./Badge";
 import { Button } from "./Button";
 import { ConsultationModal } from "./ConsultationModal";
+import { NetworkCanvas } from "./NetworkCanvas";
 
 interface HeroSectionProps {
   onOpenModal?: () => void;
@@ -14,7 +15,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
 
   return (
     <>
-      <section className="hero-section relative w-full min-h-screen bg-transparent overflow-hidden">
+      <section data-section="hero" className="hero-section relative w-full min-h-screen bg-transparent overflow-hidden">
+        {/* The network canvas is now absolutely positioned inside the hero section only */}
+        <NetworkCanvas />
+        
         {/* Content overlay - canvas shows behind this */}
         <main className="relative z-10 px-4 pt-24 pb-16 xs:px-4.5 xs:pt-28 xs:pb-20 sm:px-6 sm:pt-32 sm:pb-24 md:pt-36 md:pb-48 lg:pt-40 lg:pb-56 md:px-12 lg:px-20 max-w-7xl mx-auto w-full">
         {/* Badge */}
@@ -59,8 +63,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
             Build Your Brand <span className="text-lg">→</span>
           </Button>
 
-          {/* Secondary Button */}
-          <Button variant="secondary" className="sm:flex-1">
+          {/* Secondary Button - Scrolls to Services section */}
+          <Button
+            variant="secondary"
+            className="sm:flex-1"
+            onClick={() => {
+              const el = document.querySelector('[data-section="services"]');
+              if (el) {
+                const headerOffset = 90;
+                const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({ top: elementPosition - headerOffset, behavior: "smooth" });
+              }
+            }}
+          >
             Explore Services
           </Button>
         </div>

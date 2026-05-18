@@ -14,4 +14,5 @@ export { FAQSection } from "./FAQSection";
 export { Footer } from "./Footer";
 export { ThemeToggle } from "./ThemeToggle";
 export { ThemeProvider } from "./ThemeProvider";
+export { ThemeTransitionOverlay } from "./ThemeTransitionOverlay";
 export { ConsultationModal } from "./ConsultationModal";

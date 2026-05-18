@@ -10,7 +10,7 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenModal }) => {
   return (
-    <section className="relative z-10 px-4 xs:px-5 sm:px-6 py-12 sm:py-16 md:py-20 md:px-12 lg:px-20 max-w-7xl mx-auto overflow-hidden" data-section="about">
+    <section id="about" className="relative z-10 px-4 xs:px-5 sm:px-6 py-12 sm:py-16 md:py-20 md:px-12 lg:px-20 max-w-7xl mx-auto overflow-hidden" data-section="about">
       {/* Subtle ambient glow effects */}
       <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-orange/4 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-brand-orange/3 rounded-full blur-3xl pointer-events-none" />
@@ -52,7 +52,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenModal }) => {
             experiences that feel modern, fast, and visually impactful.
           </p>
 
-          <div className="mt-8 sm:mt-10">
+          <div className="mt-8 sm:mt-10 flex flex-wrap gap-4 items-center">
             <Button onClick={onOpenModal}>Get In Touch</Button>
           </div>
         </div>

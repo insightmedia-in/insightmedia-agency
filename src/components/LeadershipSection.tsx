@@ -32,7 +32,7 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = () => {
   ];
 
   return (
-    <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-brand-dark" data-section="team">
+    <section id="team" className="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-brand-dark" data-section="team">
       {/* Premium background glow effects */}
       <div className="absolute inset-0 opacity-15 pointer-events-none">
         <div className="absolute top-20 left-1/3 w-[400px] h-[400px] bg-brand-orange blur-[140px] rounded-full opacity-30" />
@@ -101,6 +101,7 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = () => {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

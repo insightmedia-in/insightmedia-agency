@@ -45,8 +45,27 @@ export const FAQSection: React.FC = () => {
     setOpenId(openId === id ? null : id);
   };
 
+  // Generate FAQPage JSON-LD schema for Google rich results
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
-    <section className="relative z-10 px-4 xs:px-5 sm:px-6 py-16 sm:py-24 md:py-32 md:px-12 lg:px-20 max-w-7xl mx-auto" data-section="faq">
+    <section id="faq" className="relative z-10 px-4 xs:px-5 sm:px-6 py-16 sm:py-24 md:py-32 md:px-12 lg:px-20 max-w-7xl mx-auto" data-section="faq">
+      {/* FAQ Schema for Google Rich Results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Ambient glow effects */}
       <div className="absolute -top-40 right-1/3 w-96 h-96 bg-gradient-to-br from-brand-orange/8 via-purple-600/5 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 left-1/4 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none" />

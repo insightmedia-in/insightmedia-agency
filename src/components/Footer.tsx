@@ -1,12 +1,32 @@
-import React from "react";
+"use client";
+
+import React, { useCallback } from "react";
 import { Logo } from "./Logo";
 import { FooterParticles } from "./FooterParticles";
+
+const scrollToSection = (sectionId: string) => {
+  if (sectionId === "top") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  const element = document.querySelector(`[data-section="${sectionId}"]`);
+  if (element) {
+    const headerOffset = 90;
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: elementPosition - headerOffset,
+      behavior: "smooth",
+    });
+  }
+};
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer 
+      id="contact"
+      data-section="footer"
       className={`
         relative z-10 overflow-hidden transition-all duration-300
         dark:bg-gradient-to-b dark:from-[#0a0a0a] dark:via-[#050505] dark:to-[#000000] 
@@ -70,18 +90,27 @@ export const Footer: React.FC = () => {
               Services
             </h4>
             <ul className="space-y-4 sm:space-y-5">
-              {["Web Development", "UI/UX Design", "Branding", "SEO Optimization"].map((service, i) => (
+              {[
+                { label: "Web Development", sectionId: "services" },
+                { label: "UI/UX Design", sectionId: "services" },
+                { label: "Branding", sectionId: "services" },
+                { label: "SEO Optimization", sectionId: "services" },
+              ].map((service, i) => (
                 <li key={i}>
                   <a 
-                    href="#" 
+                    href={`#${service.sectionId}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(service.sectionId);
+                    }}
                     className={`
-                      transition-all duration-300 text-xs xs:text-sm font-medium group inline-block
+                      transition-all duration-300 text-xs xs:text-sm font-medium group inline-block cursor-pointer
                       dark:text-gray-400 dark:hover:text-brand-orange
                       light:text-gray-600 light:hover:text-rose-600
                     `}
                   >
                     <span className="inline-block group-hover:translate-x-1 transition-transform duration-300">
-                      {service}
+                      {service.label}
                     </span>
                   </a>
                 </li>
@@ -101,18 +130,27 @@ export const Footer: React.FC = () => {
               Company
             </h4>
             <ul className="space-y-4 sm:space-y-5">
-              {["About", "Process", "Blog", "Careers"].map((item, i) => (
+              {[
+                { label: "About", sectionId: "about" },
+                { label: "Team", sectionId: "team" },
+                { label: "FAQ", sectionId: "faq" },
+                { label: "Contact", sectionId: "footer" },
+              ].map((item, i) => (
                 <li key={i}>
                   <a 
-                    href="#" 
+                    href={`#${item.sectionId}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(item.sectionId);
+                    }}
                     className={`
-                      transition-all duration-300 text-xs xs:text-sm font-medium group inline-block
+                      transition-all duration-300 text-xs xs:text-sm font-medium group inline-block cursor-pointer
                       dark:text-gray-400 dark:hover:text-brand-orange
                       light:text-gray-600 light:hover:text-rose-600
                     `}
                   >
                     <span className="inline-block group-hover:translate-x-1 transition-transform duration-300">
-                      {item}
+                      {item.label}
                     </span>
                   </a>
                 </li>
@@ -203,17 +241,6 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar - Enhanced */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-8">
-          {/* Left - Copyright */}
-          <p 
-            className={`
-              text-xs font-medium tracking-wider text-center sm:text-left
-              dark:text-gray-500
-              light:text-gray-500
-            `}
-          >
-            © {currentYear} InsightMedia. All rights reserved.
-          </p>
-
           {/* Right - Links + Social */}
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
             {["Privacy", "Terms"].map((link, i) => (
@@ -256,6 +283,17 @@ export const Footer: React.FC = () => {
               </a>
             ))}
           </div>
+
+          {/* Right - Copyright */}
+          <p 
+            className={`
+              text-xs font-medium tracking-wider text-center sm:text-right
+              dark:text-gray-500
+              light:text-gray-500
+            `}
+          >
+            © 2026 InsightMedia. All rights reserved. | Designed & Developed by Nikhil Yadav
+          </p>
         </div>
       </div>
     </footer>

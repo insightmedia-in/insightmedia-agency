@@ -1,29 +1,29 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Logo } from "./Logo";
-import { Button } from "./Button";
 import { ThemeToggle } from "./ThemeToggle";
 
 interface NavItem {
   label: string;
-  id: string;
+  sectionId: string;
 }
 
 const navigationItems: NavItem[] = [
-  { label: "Featured Projects", id: "projects" },
-  { label: "Our Services", id: "services" },
-  { label: "About InsightMedia", id: "about" },
-  { label: "The Team", id: "team" },
-  { label: "FAQ", id: "faq" },
+  { label: "Featured Projects", sectionId: "projects" },
+  { label: "Our Services", sectionId: "services" },
+  { label: "About InsightMedia", sectionId: "about" },
+  { label: "The Team", sectionId: "team" },
+  { label: "FAQ", sectionId: "faq" },
 ];
 
-const mobileMenuItems = [
-  { label: "How it works", id: "how-it-works" },
-  { label: "Pricing", id: "pricing" },
-  { label: "Stories", id: "stories" },
-  { label: "FAQ", id: "faq-mobile" },
-  { label: "Job seekers", id: "job-seekers" },
+const mobileMenuItems: NavItem[] = [
+  { label: "Home", sectionId: "hero" },
+  { label: "Services", sectionId: "services" },
+  { label: "About", sectionId: "about" },
+  { label: "Team", sectionId: "team" },
+  { label: "FAQ", sectionId: "faq" },
+  { label: "Contact", sectionId: "footer" },
 ];
 
 interface HeaderProps {
@@ -31,29 +31,47 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
-  const [activeSection, setActiveSection] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = navigationItems.map((item) => {
-        const element = document.querySelector(`[data-section="${item.id}"]`);
-        return { id: item.id, element };
+  // Scroll to a section by its data-section attribute
+  const scrollToSection = useCallback((sectionId: string) => {
+    if (sectionId === "hero") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const element = document.querySelector(`[data-section="${sectionId}"]`);
+    if (element) {
+      const headerOffset = 90;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - headerOffset,
+        behavior: "smooth",
       });
+    }
+  }, []);
 
-      for (const section of sections) {
-        if (section.element) {
-          const rect = section.element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section.id);
-            break;
+  // Track which section is currently in view
+  useEffect(() => {
+    const sectionIds = ["projects", "services", "about", "team", "faq"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("data-section");
+            if (id) setActiveSection(id);
           }
         }
-      }
-    };
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    sectionIds.forEach((id) => {
+      const el = document.querySelector(`[data-section="${id}"]`);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -80,26 +98,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isMobileMenuOpen]);
 
-  const handleNavClick = (id: string) => {
-    const element = document.querySelector(`[data-section="${id}"]`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setActiveSection(id);
-    }
+  const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
   };
 
-  const handleMenuItemClick = (id: string) => {
+  const handleMobileNavClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(`[data-section="${id}"]`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setActiveSection(id);
-    }
+    // Small delay to let menu close animation start
+    setTimeout(() => scrollToSection(sectionId), 100);
   };
 
   return (
     <>
-      {/* Desktop Navbar - Untouched */}
+      {/* Desktop Navbar */}
       <header
         className={`
           desktop-navbar
@@ -115,7 +128,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
       >
         {/* Logo */}
         <div className="flex-shrink-0">
-          <Logo />
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <Logo />
+          </a>
         </div>
 
         {/* Center Navigation - Hidden on mobile */}
@@ -123,22 +144,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
           {/* Navigation Links */}
           <nav className="flex items-center gap-10 text-sm font-medium">
             {navigationItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
+              <a
+                key={item.sectionId}
+                href={`#${item.sectionId}`}
+                onClick={(e) => handleNavClick(e, item.sectionId)}
                 className={`
-                  relative transition-all duration-300 font-medium text-sm whitespace-nowrap
-                  ${
-                    activeSection === item.id
-                      ? "dark:text-brand-orange light:text-rose-600"
-                      : "dark:text-gray-400 dark:hover:text-white light:text-gray-700 light:hover:text-gray-900"
+                  relative transition-all duration-300 font-medium text-sm whitespace-nowrap cursor-pointer
+                  ${activeSection === item.sectionId
+                    ? "dark:text-brand-orange light:text-rose-600"
+                    : "dark:text-gray-400 dark:hover:text-white light:text-gray-700 light:hover:text-gray-900"
                   }
                 `}
               >
                 {item.label}
 
                 {/* Active indicator with glow */}
-                {activeSection === item.id && (
+                {activeSection === item.sectionId && (
                   <div
                     className={`
                       absolute -bottom-1 left-0 right-0 h-0.5 rounded-full
@@ -148,7 +169,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
                     `}
                   />
                 )}
-              </button>
+              </a>
             ))}
           </nav>
         </div>
@@ -158,7 +179,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
           {/* Desktop Nav Actions - Hidden on mobile */}
           <div className="nav-actions hidden md:flex">
             <ThemeToggle />
-            
+
             <button
               onClick={onOpenModal}
               className="cta-button"
@@ -173,7 +194,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
       <header className="mobile-navbar">
         {/* Logo */}
         <div className="flex-shrink-0 logo">
-          <Logo />
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <Logo />
+          </a>
         </div>
 
         {/* Right Actions - Theme toggle & Hamburger */}
@@ -239,10 +268,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
         className={`
           fixed top-[70px] left-0 right-0 z-50 hidden max-md:block
           transition-all duration-300 origin-top
-          ${
-            isMobileMenuOpen
-              ? "opacity-100 scale-y-100"
-              : "opacity-0 scale-y-95 pointer-events-none"
+          ${isMobileMenuOpen
+            ? "opacity-100 scale-y-100"
+            : "opacity-0 scale-y-95 pointer-events-none"
           }
         `}
       >
@@ -259,18 +287,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
           {/* Menu Items */}
           <nav className="px-4 xs:px-5 sm:px-6 py-4 xs:py-5 space-y-2">
             {mobileMenuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleMenuItemClick(item.id)}
+              <a
+                key={item.sectionId}
+                href={`#${item.sectionId}`}
+                onClick={(e) => handleMobileNavClick(e, item.sectionId)}
                 className={`
                   w-full text-left px-3 xs:px-4 py-2.5 xs:py-3 rounded-lg transition-all duration-300
-                  font-medium text-sm xs:text-base
-                  dark:text-gray-300 dark:hover:text-brand-orange dark:hover:bg-brand-orange/10
-                  light:text-gray-700 light:hover:text-rose-600 light:hover:bg-rose-50
+                  font-medium text-sm xs:text-base block cursor-pointer
+                  ${activeSection === item.sectionId
+                    ? "dark:text-brand-orange dark:bg-brand-orange/10 light:text-rose-600 light:bg-rose-50"
+                    : "dark:text-gray-300 dark:hover:text-brand-orange dark:hover:bg-brand-orange/10 light:text-gray-700 light:hover:text-rose-600 light:hover:bg-rose-50"
+                  }
                 `}
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </nav>
 
