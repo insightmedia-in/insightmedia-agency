@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge } from "./Badge";
 import { Button } from "./Button";
 import { ConsultationModal } from "./ConsultationModal";
@@ -12,6 +12,87 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Hover effect - activates phone animation on mouseenter/mouseleave
+  useEffect(() => {
+    const wrap = document.querySelector(".phone-wrap");
+
+    const handleEnter = () => {
+      wrap?.classList.add("active");
+    };
+
+    const handleLeave = () => {
+      wrap?.classList.remove("active");
+    };
+
+    wrap?.addEventListener("mouseenter", handleEnter);
+    wrap?.addEventListener("mouseleave", handleLeave);
+
+    return () => {
+      wrap?.removeEventListener("mouseenter", handleEnter);
+      wrap?.removeEventListener("mouseleave", handleLeave);
+    };
+  }, []);
+
+  // Premium Scroll Parallax Effect
+  useEffect(() => {
+    const parallaxWrap = document.querySelector(".phone-scroll-parallax") as HTMLElement;
+    if (!parallaxWrap) return;
+
+    let currentScroll = 0;
+    let targetScroll = 0;
+    let rafId: number;
+
+    const handleScroll = () => {
+      targetScroll = window.scrollY;
+
+      // Reveal front phone automatically on scroll down (All devices)
+      const wrap = document.querySelector(".phone-wrap");
+      if (wrap) {
+        if (window.scrollY > 50) {
+          wrap.classList.add("scroll-active");
+        } else {
+          wrap.classList.remove("scroll-active");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    const animate = () => {
+      // Smooth lerp for cinematic easing (Apple/Stripe style)
+      currentScroll += (targetScroll - currentScroll) * 0.05;
+
+      if (window.innerWidth <= 768) {
+        // Mobile: Subtle luxury background motion (minimalist, no aggressive spinning)
+        const translateY = currentScroll * 0.15;
+        const rotateY = currentScroll * 0.02;
+        const rotateX = currentScroll * 0.015;
+        const translateZ = currentScroll * 0.05; // tiny depth increase
+
+        parallaxWrap.style.transform = `translate3d(0, ${translateY}px, ${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      } else {
+        // Desktop: Pronounced cinematic swing
+        const scrollProgress = Math.min(currentScroll / 800, 1);
+        const rotateX = scrollProgress * 15; 
+        const rotateY = scrollProgress * -25; 
+        const translateY = scrollProgress * -80; 
+        const translateZ = scrollProgress * 60; 
+
+        parallaxWrap.style.transform = `translate3d(0, ${translateY}px, ${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+      if (parallaxWrap) parallaxWrap.style.transform = "";
+    };
+  }, []);
 
   return (
     <>
@@ -46,7 +127,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
             `}
           >
             We connect
-            <span className="block"><span className="exceptional-italic">top</span> talent</span>
+            <span className="block"><span className="exceptional-italic text-brand-orange">top</span> talent</span>
             <span className="block">with modern</span>
             companies.
           </h1>
@@ -88,6 +169,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
           >
             Explore Services
           </Button>
+        </div>
+
+        {/* Premium Hero Visual - Phone Mockups with Hover Animation */}
+        <div className="phone-wrap">
+          <div 
+            className="phone-scroll-parallax"
+            style={{ width: '100%', height: '100%', transformStyle: 'preserve-3d', willChange: 'transform' }}
+          >
+            <img
+              src="/iphone back.png"
+              className="phone-back"
+            />
+
+            <div className="phone-front-container">
+              <img
+                src="/iPhone-Template-PNG-Cutout11.png"
+                className="phone-front"
+              />
+              
+              {/* Premium Glassmorphism Card */}
+              <div className="glass-card">
+                <img src="/favicon-logo.png" alt="InsightMedia Logo" className="glass-card-logo" />
+                <p className="glass-card-text">
+                  Your <span className="text-highlight-orange">business</span> deserves this level of <span className="text-highlight-gold">design</span> ✨
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         </main>
       </section>
