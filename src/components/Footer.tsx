@@ -158,8 +158,71 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Contact Column - Premium Glassmorphism Card */}
+          {/* Contact Column + Social Icons */}
           <div>
+            {/* Social Icons — above Contact info */}
+            <div className="flex items-center gap-4 mb-6 sm:mb-8">
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/in.sightmedia?utm_source=qr&igsh=MTFmc3VkejQ3Nnl5Nw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className={`
+                  group relative inline-flex items-center justify-center p-2 rounded-lg
+                  transition-all duration-300
+                  dark:text-gray-400 dark:hover:text-brand-orange
+                  light:text-gray-500 light:hover:text-rose-600
+                `}
+              >
+                <span className="absolute inset-0 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:bg-brand-orange/15 light:bg-rose-500/15" />
+                <svg className="relative w-5 h-5 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+
+              {/* X (Twitter) */}
+              <a
+                href="https://x.com/Insightmediaai"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                className={`
+                  group relative inline-flex items-center justify-center p-2 rounded-lg
+                  transition-all duration-300
+                  dark:text-gray-400 dark:hover:text-brand-orange
+                  light:text-gray-500 light:hover:text-rose-600
+                `}
+              >
+                <span className="absolute inset-0 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:bg-brand-orange/15 light:bg-rose-500/15" />
+                <svg className="relative w-5 h-5 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/in/insight-media-755a3840b?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className={`
+                  group relative inline-flex items-center justify-center p-2 rounded-lg
+                  transition-all duration-300
+                  dark:text-gray-400 dark:hover:text-brand-orange
+                  light:text-gray-500 light:hover:text-rose-600
+                `}
+              >
+                <span className="absolute inset-0 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:bg-brand-orange/15 light:bg-rose-500/15" />
+                <svg className="relative w-5 h-5 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+            </div>
             <h4 
               className={`
                 font-black text-xs uppercase tracking-widest mb-6 sm:mb-8
@@ -255,30 +318,6 @@ export const Footer: React.FC = () => {
               >
                 <span className="inline-block group-hover:translate-y-[-2px] transition-transform duration-300">
                   {link}
-                </span>
-              </a>
-            ))}
-            
-            <div 
-              className={`
-                h-4 w-px bg-gradient-to-b from-transparent to-transparent
-                dark:via-white/10
-                light:via-gray-300
-              `} 
-            />
-            
-            {["Instagram", "Twitter", "LinkedIn"].map((social, i) => (
-              <a 
-                key={i}
-                href="#" 
-                className={`
-                  transition-all duration-300 text-xs font-medium group inline-block
-                  dark:text-gray-500 dark:hover:text-brand-orange
-                  light:text-gray-500 light:hover:text-rose-600
-                `}
-              >
-                <span className="inline-block group-hover:translate-y-[-2px] transition-transform duration-300">
-                  {social}
                 </span>
               </a>
             ))}

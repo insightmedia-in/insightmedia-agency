@@ -98,11 +98,18 @@ export const NetworkCanvas: React.FC = () => {
   const shockRef = useRef(0);
   const shockAngleRef = useRef(0);
 
+  const fallbackRef = useRef(false);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: true });
-    if (!ctx) return;
+    // alpha:false = opaque canvas, avoids compositing issues on low-GPU mobile/WebView
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) {
+      // Canvas failed — show static fallback
+      fallbackRef.current = true;
+      return;
+    }
 
     class Particle {
       x: number; y: number;
@@ -416,10 +423,10 @@ export const NetworkCanvas: React.FC = () => {
       // Draw network lines
       let totalDrawnLines = 0;
 
-      // CRITICAL: 'screen' blend makes lines invisible on white backgrounds!
-      // Use 'screen' for dark mode glow, 'source-over' for light mode visibility
+      // FIXED: 'screen' blend mode causes invisible/dim lines on Instagram in-app
+      // browser and many mobile WebViews. Use 'source-over' universally for consistency.
       const isLight = themeRef.current === "light";
-      ctx.globalCompositeOperation = isLight ? "source-over" : "screen";
+      ctx.globalCompositeOperation = "source-over";
       for (let i = 0; i < particles.length; i++) {
         let nodeConnections = 0;
         const p1 = particles[i];
@@ -456,8 +463,8 @@ export const NetworkCanvas: React.FC = () => {
             // Softer mask — minimum 0.5 so lines stay visible even behind text
             const maskOpacity = clamp(0.5 + (centerDist / maxCenterDist) * 0.5, 0.5, 1.0);
 
-            // Balanced base opacity — significantly boosted for light mode
-            const baseOp = isLight ? 0.65 : 0.35;
+            // Boosted base opacity for consistent brightness without screen blend
+            const baseOp = isLight ? 0.55 : 0.25;
             const depthMul = (0.4 + p1.depth * 0.6);
             let op = baseOp * depthMul * proximity * colors.lineOpacity * maskOpacity * (1 + alphaBoost * 0.5);
 
@@ -502,10 +509,25 @@ export const NetworkCanvas: React.FC = () => {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
+        style={{
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+          isolation: 'isolate' as never,
+          WebkitFontSmoothing: 'antialiased',
+        }}
+      />
+      {/* Static CSS fallback if canvas/WebGL fails (Instagram browser, low-GPU devices) */}
+      <div
+        className="hero-fallback-bg absolute top-0 left-0 w-full h-full pointer-events-none z-0"
+        aria-hidden="true"
+      />
+    </>
   );
 };

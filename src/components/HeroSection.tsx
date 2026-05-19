@@ -15,12 +15,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
 
   return (
     <>
-      <section data-section="hero" className="hero-section relative w-full min-h-screen bg-transparent overflow-hidden">
+      <section
+        data-section="hero"
+        className="hero-section relative w-full min-h-screen bg-transparent overflow-hidden"
+        style={{
+          isolation: 'isolate',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+        }}
+      >
         {/* The network canvas is now absolutely positioned inside the hero section only */}
         <NetworkCanvas />
         
-        {/* Content overlay - canvas shows behind this */}
-        <main className="relative z-10 px-4 pt-24 pb-16 xs:px-4.5 xs:pt-28 xs:pb-20 sm:px-6 sm:pt-32 sm:pb-24 md:pt-36 md:pb-48 lg:pt-40 lg:pb-56 md:px-12 lg:px-20 max-w-7xl mx-auto w-full">
+        {/* Content overlay - canvas shows behind this, forced full opacity */}
+        <main
+          className="hero-content relative z-10 px-4 pt-24 pb-16 xs:px-4.5 xs:pt-28 xs:pb-20 sm:px-6 sm:pt-32 sm:pb-24 md:pt-36 md:pb-48 lg:pt-40 lg:pb-56 md:px-12 lg:px-20 max-w-7xl mx-auto w-full"
+        >
         {/* Badge */}
         <div className="mb-4 sm:mb-6 md:mb-10 lg:mb-12">
           <Badge>Digital Growth — Reimagined</Badge>

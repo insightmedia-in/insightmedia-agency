@@ -330,6 +330,7 @@ html.light .theme-toggle:hover {
     left: 0;
     z-index: 9999;
     overflow: hidden;
+    -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     background: rgba(10, 10, 10, 0.45);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -811,12 +812,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Ensure proper rendering of images and canvas on mobile */
-img,
-canvas {
+/* Ensure proper rendering of images on mobile — canvas is handled separately */
+img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Canvas MUST fill its parent exactly — never constrain with max-width/height:auto */
+canvas {
+  display: block;
+  max-width: none !important;
+  height: auto !important;
 }
 
 /* Mobile-friendly focus states */
@@ -827,4 +834,76 @@ canvas {
     outline: 2px solid rgba(255, 90, 31, 0.5);
     outline-offset: 2px;
   }
+}
+
+/* ============================================ */
+/* HERO SECTION — CROSS-BROWSER CONSISTENCY     */
+/* ============================================ */
+
+/* Force hero content to full brightness on all devices */
+.hero-content {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Static fallback background — visible only if canvas fails to render */
+.hero-fallback-bg {
+  background:
+    radial-gradient(ellipse at 15% 35%, rgba(255, 90, 31, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 90, 31, 0.04) 0%, transparent 55%),
+    linear-gradient(135deg, #0a0a0a 0%, #050505 50%, #0f0f19 100%);
+  opacity: 1;
+  z-index: -1;
+}
+
+html.light .hero-fallback-bg {
+  background:
+    radial-gradient(ellipse at 15% 35%, rgba(220, 60, 75, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(220, 60, 75, 0.04) 0%, transparent 55%),
+    linear-gradient(135deg, #fafafa 0%, #f5f5f5 50%, #f0f0f5 100%);
+}
+
+/* Hero section — force GPU layer and isolation */
+.hero-section {
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  contain: layout style;
+}
+
+/* ============================================ */
+/* INSTAGRAM / WEBVIEW BROWSER COMPATIBILITY    */
+/* ============================================ */
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .mobile-navbar {
+    background: rgba(10, 10, 10, 0.85) !important;
+  }
+  html.light .mobile-navbar {
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+  .theme-toggle {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+  html.light .theme-toggle {
+    background: rgba(0, 0, 0, 0.04) !important;
+  }
+}
+
+/* Force consistent text rendering across WebViews */
+.hero-section h1,
+.hero-section p,
+.hero-section span {
+  opacity: 1 !important;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
