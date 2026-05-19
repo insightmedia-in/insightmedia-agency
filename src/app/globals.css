@@ -36,19 +36,38 @@ html.light {
 }
 
 /* Apply smooth transition to targeted structural elements only to avoid frame drops */
-body, main, section, header, footer, nav, div {
+body,
+main,
+section,
+header,
+footer,
+nav,
+div {
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a, li, label {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li,
+label {
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -887,12 +906,15 @@ html.light .hero-fallback-bg {
   .mobile-navbar {
     background: rgba(10, 10, 10, 0.85) !important;
   }
+
   html.light .mobile-navbar {
     background: rgba(255, 255, 255, 0.92) !important;
   }
+
   .theme-toggle {
     background: rgba(255, 255, 255, 0.08) !important;
   }
+
   html.light .theme-toggle {
     background: rgba(0, 0, 0, 0.04) !important;
   }
@@ -903,324 +925,132 @@ html.light .hero-fallback-bg {
 .hero-section p,
 .hero-section span {
   opacity: 1 !important;
+  color: inherit;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 /* ============================================ */
-/* PREMIUM HERO VISUAL - PHONE MOCKUPS         */
-/* Apple-style 3D Cinematic Reveal Animation   */
+/* PREMIUM HERO VISUAL - PHONE MOCKUPS        */
 /* ============================================ */
 
 .phone-wrap {
   position: absolute;
+
   right: 120px;
   top: 48%;
+
+  transform: translateY(-50%);
+
   width: 380px;
   height: 700px;
+
   z-index: 2;
 
-  /* 3D perspective container — gives depth to child transforms */
-  perspective: 1200px;
-  transform-style: preserve-3d;
-
-  /* Floating animation on the wrapper */
   animation: floating 6s ease-in-out infinite;
-  transform: translateY(-50%);
 }
 
-/* ---- Back Phone — Base layer (visible by default) ---- */
+/* Back Phone - Base layer */
 .phone-back {
   position: absolute;
+
   inset: 0;
+
   width: 100%;
   height: 100%;
+
   object-fit: contain;
+
   z-index: 1;
 
-  /* Default: fully visible, facing user */
-  opacity: 1;
-  visibility: visible;
-  transform: rotateY(0deg) rotateX(0deg) scale(1);
-  transform-origin: center center;
-  transform-style: preserve-3d;
+  transition: 0.5s ease;
 
-  /* Premium smooth transition — Apple spring curve */
-  transition:
-    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
-    visibility 0s linear 0s,
-    filter 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-
-  filter: drop-shadow(0 20px 60px rgba(255, 120, 0, 0.18))
-          drop-shadow(0 0 80px rgba(255, 120, 0, 0.12));
+  filter: drop-shadow(0 0 80px rgba(255, 120, 0, 0.22));
 }
 
-/* ---- Front Phone Container — Hidden off-screen right, rotated away ---- */
-.phone-front-container {
-  position: absolute;
-  inset: 0;
-  top: -20px;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  pointer-events: none; /* Ignore pointer events when hidden */
-
-  /* OFF STATE: rotated away, fully invisible */
-  opacity: 0;
-  visibility: hidden;
-  transform: rotateY(75deg) translateX(120px) translateZ(-80px) scale(0.88);
-  transform-origin: right center;
-  transform-style: preserve-3d;
-
-  /* Cinematic entrance curve — slow start, strong spring finish */
-  transition:
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0s linear 0.85s,
-    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-
-  filter: drop-shadow(0 0 0px rgba(0, 140, 255, 0))
-          drop-shadow(0 0 0px rgba(0, 140, 255, 0));
-}
-
-/* Image inside container */
+/* Front Phone - Overlay layer */
 .phone-front {
+  position: absolute;
+
+  inset: 0;
+  top: -30px;
+
   width: 100%;
   height: 100%;
+
   object-fit: contain;
-}
 
-/* ---- HOVER ACTIVE: Back phone fully disappears ---- */
-.phone-wrap.active .phone-back,
-.phone-wrap.scroll-active .phone-back {
-  /* Completely hidden — no bleed-through, no double device */
+  z-index: 5;
+
   opacity: 0;
-  visibility: hidden;
-  transform: rotateY(-25deg) rotateX(3deg) translateX(-50px) translateZ(-60px) scale(0.85);
-  filter: drop-shadow(0 0 0px rgba(255, 120, 0, 0));
-  /* Delay visibility:hidden so opacity animates first */
-  transition:
-    transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1),
-    visibility 0s linear 0.45s,
-    filter 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+
+  transform: scale(0.90);
+
+  transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+
+  pointer-events: none;
+
+  filter: drop-shadow(0 0 35px rgba(0, 140, 255, 0.16));
 }
 
-/* ---- HOVER ACTIVE: Front phone swings in — solid, clean ---- */
-.phone-wrap.active .phone-front-container,
-.phone-wrap.scroll-active .phone-front-container {
-  /* Full reveal — no transparency, solid device feel */
+/* Active State - Front phone animates in */
+.phone-wrap.active .phone-front {
   opacity: 1;
-  visibility: visible;
-  pointer-events: auto; /* Allow interacting with card */
-  transform: rotateY(-3deg) translateX(5px) translateZ(20px) scale(1);
-  filter: drop-shadow(0 30px 80px rgba(0, 140, 255, 0.18))
-          drop-shadow(0 0 50px rgba(0, 140, 255, 0.12));
-  /* Instant visibility, smooth everything else */
-  transition:
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0s linear 0s,
-    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+
+  transform: scale(0.95);
 }
 
-/* ---- Floating keyframes (unchanged, smooth vertical bob) ---- */
+/* Active State - Back phone fades */
+.phone-wrap.active .phone-back {
+  opacity: 0.18;
+}
+
+/* Floating animation for smooth vertical movement */
 @keyframes floating {
   0% {
-    transform: translateY(-50%) translateY(0px);
+    transform:
+      translateY(-50%) translateY(0px);
   }
+
   50% {
-    transform: translateY(-50%) translateY(-12px);
+    transform:
+      translateY(-50%) translateY(-12px);
   }
+
   100% {
-    transform: translateY(-50%) translateY(0px);
+    transform:
+      translateY(-50%) translateY(0px);
   }
 }
 
-/* ---- Light mode adjustments ---- */
+/* Light mode adjustments */
 html.light .phone-back {
-  filter: drop-shadow(0 20px 60px rgba(255, 107, 107, 0.12))
-          drop-shadow(0 0 60px rgba(255, 107, 107, 0.08));
+  filter: drop-shadow(0 0 80px rgba(255, 107, 107, 0.15));
 }
 
-html.light .phone-front-container {
-  filter: drop-shadow(0 0 0px rgba(0, 120, 200, 0))
-          drop-shadow(0 0 0px rgba(0, 120, 200, 0));
-}
-
-html.light .phone-wrap.active .phone-back,
-html.light .phone-wrap.scroll-active .phone-back {
-  filter: drop-shadow(0 0 0px rgba(255, 107, 107, 0));
-}
-
-html.light .phone-wrap.active .phone-front-container,
-html.light .phone-wrap.scroll-active .phone-front-container {
-  filter: drop-shadow(0 30px 80px rgba(0, 120, 200, 0.14))
-          drop-shadow(0 0 40px rgba(0, 120, 200, 0.1));
+html.light .phone-front {
+  filter: drop-shadow(0 0 35px rgba(0, 120, 200, 0.12));
 }
 
 /* ============================================ */
-/* GLASS CARD ON PHONE SCREEN                  */
+/* MOBILE RESPONSIVE - PHONE MOCKUPS          */
 /* ============================================ */
 
-.glass-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 28px;
-  padding: 36px 20px;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 
-              0 0 20px rgba(255, 106, 0, 0.15),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-              
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: glass-float 4s ease-in-out infinite;
-  
-  /* Slight transparency for futuristic feel */
-  opacity: 0.95;
-  z-index: 15;
-}
-
-.glass-card:hover {
-  transform: translate(-50%, -50%) scale(1.05) translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 
-              0 0 30px rgba(255, 106, 0, 0.35),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.08);
-  animation-play-state: paused;
-}
-
-.glass-card-logo {
-  width: 90px;
-  height: auto;
-  margin-bottom: 22px;
-  object-fit: contain;
-  /* Soft orange glow */
-  filter: drop-shadow(0 4px 20px rgba(255, 106, 0, 0.6));
-}
-
-.glass-card-text {
-  font-size: 24px;
-  font-weight: 600;
-  text-align: center;
-  color: #FFD6A5;
-  line-height: 1.35;
-  margin: 0;
-  text-shadow: 0 0 18px rgba(255, 138, 61, 0.22);
-  letter-spacing: -0.6px;
-}
-
-.text-highlight-orange {
-  color: #ff6a00;
-  text-shadow: 0 0 24px rgba(255, 106, 0, 0.4);
-}
-
-.text-highlight-gold {
-  color: #FFE8CC;
-  text-shadow: 0 0 24px rgba(255, 214, 165, 0.5);
-}
-
-@keyframes glass-float {
-  0% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-6px);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
-}
-
-html.light .glass-card {
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
-              0 0 20px rgba(255, 106, 0, 0.1),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-}
-
-html.light .glass-card:hover {
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1), 
-              0 0 30px rgba(255, 106, 0, 0.2),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-}
-
-html.light .glass-card-text {
-  color: #1a1a1a;
-  text-shadow: none;
-}
-
-/* ============================================ */
-/* MOBILE RESPONSIVE & AUTONOMOUS LOOPING      */
-/* ============================================ */
-
-@media (max-width: 1023px) {
+@media (max-width: 768px) {
   .phone-wrap {
-    width: 340px;
-    height: 640px;
-    /* Absolute Center horizontally */
-    right: auto;
-    left: 50%;
-    margin-left: -170px;
-    
-    /* Base positioning */
-    z-index: 0;
-    pointer-events: none;
-    perspective: 900px;
-    opacity: 1.0;
-    animation: none !important;
-  }
+    width: 300px;
+    height: 560px;
 
-  /* Apply glowing screen effect ONLY to the back phone */
-  .phone-back {
-    mix-blend-mode: screen;
-    filter: brightness(1.3) blur(1px) drop-shadow(0 0 40px rgba(255, 120, 0, 0.5));
+    right: -100px;
   }
-
-  /* Keep the front phone solid, dark, and highly readable */
-  .phone-front-container {
-    mix-blend-mode: normal;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
-  }
-
-  /* Stronger dark overlay to soften the phone even more */
-  .phone-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 20;
-    pointer-events: none;
-    background: transparent;
-    border-radius: 40px; /* Maps to general phone shape */
-  }
-
-  /* Mobile is strictly static and calm — no auto animations */
 }
 
 @media (max-width: 640px) {
   .phone-wrap {
-    /* Keep it prominently sized on mobile to act as a proper background */
-    width: 320px;
-    height: 600px;
-    margin-left: -160px;
-    opacity: 0.15;
+    width: 240px;
+    height: 450px;
+
+    right: -150px;
   }
 }
-
+
