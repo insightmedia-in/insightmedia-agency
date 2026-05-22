@@ -331,7 +331,7 @@ export const Footer: React.FC = () => {
               light:text-gray-500
             `}
           >
-            © 2026 InsightMedia. All rights reserved. | Designed & Developed by Nikhil Yadav
+            © 2025 InsightMedia. All rights reserved. | Designed & Developed by Nikhil Yadav
           </p>
         </div>
       </div>
