@@ -54,7 +54,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
         >
           {/* Badge */}
           <div className="mb-4 sm:mb-6 md:mb-10 lg:mb-12">
-            <Badge>Digital Growth — Reimagined</Badge>
+            <Badge>Digital Marketing & Web Development Agency</Badge>
           </div>
 
           {/* Headline */}

@@ -52,6 +52,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenModal }) => {
             experiences that feel modern, fast, and visually impactful.
           </p>
 
+          <p className="mt-3 xs:mt-4 sm:mt-5 md:mt-6 dark:text-gray-400 light:text-gray-600 text-xs xs:text-sm sm:text-base font-semibold">
+            Serving clients across Gurgaon, Delhi NCR & India.
+          </p>
+
           <div className="mt-8 sm:mt-10 flex flex-wrap gap-4 items-center">
             <Button onClick={onOpenModal}>Get In Touch</Button>
           </div>

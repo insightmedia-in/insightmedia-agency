@@ -18,11 +18,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://insightmedia.in"),
   title: {
-    default: "InsightMedia — Modern Digital Agency",
+    default: "InsightMedia | Web Development, SEO & Branding Agency",
     template: "%s | InsightMedia",
   },
   description:
-    "InsightMedia is a modern digital agency offering premium web development, UI/UX design, branding, SEO, and digital solutions for modern businesses and creators.",
+    "InsightMedia helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
   keywords: [
     "digital agency",
     "web development",
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://insightmedia.in",
     siteName: "InsightMedia",
-    title: "InsightMedia — Modern Digital Agency",
+    title: "InsightMedia | Web Development, SEO & Branding Agency",
     description:
-      "Premium web development, branding, UI/UX, SEO, and digital experiences for modern brands.",
+      "InsightMedia helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
     images: [
       {
         url: "/og-image.png",
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "InsightMedia — Modern Digital Agency",
+    title: "InsightMedia | Web Development, SEO & Branding Agency",
     description:
-      "Premium web development, branding, UI/UX, SEO, and digital experiences for modern brands.",
+      "InsightMedia helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
     images: ["/og-image.png"],
   },
   alternates: {
