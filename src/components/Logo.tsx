@@ -23,7 +23,7 @@ const LogoContent: React.FC = () => {
     <Image
       key={imageKey}
       src={logoSrc}
-      alt="InsightMedia Logo"
+      alt="Insight Media Logo"
       width={260}
       height={80}
       priority

@@ -50,7 +50,7 @@ export function AboutPage() {
           <div className="absolute -top-40 right-1/4 w-96 h-96 bg-gradient-to-br from-brand-orange/10 via-purple-600/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
           <div className="w-fit mb-6">
-            <Badge>About InsightMedia</Badge>
+            <Badge>About Insight Media</Badge>
           </div>
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight mb-6 dark:text-white light:text-gray-900">
             We Build Modern{" "}
@@ -58,7 +58,7 @@ export function AboutPage() {
             Experiences
           </h1>
           <p className="dark:text-gray-400 light:text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl font-medium">
-            InsightMedia is a modern creative digital agency focused on building premium websites, high-converting user experiences, branding systems, and digital solutions for modern businesses and creators.
+            Insight Media is a modern creative digital agency focused on building premium websites, high-converting user experiences, branding systems, and digital solutions for modern businesses and creators.
           </p>
         </section>
 
@@ -68,7 +68,7 @@ export function AboutPage() {
             <div>
               <img
                 src="/photo-1.png"
-                alt="InsightMedia Team"
+                alt="Insight Media Team"
                 className="w-full max-w-[580px] h-auto object-contain rounded-2xl drop-shadow-2xl"
               />
             </div>

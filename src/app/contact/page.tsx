@@ -2,25 +2,25 @@ import type { Metadata } from "next";
 import { RedirectToSection } from "@/components/RedirectToSection";
 
 export const metadata: Metadata = {
-  title: "Contact | InsightMedia — Get In Touch",
+  title: "Contact | Insight Media — Get In Touch",
   description:
-    "Get in touch with InsightMedia for premium web development, UI/UX design, branding, and digital services. We respond within 12 hours.",
+    "Get in touch with Insight Media for premium web development, UI/UX design, branding, and digital services. We respond within 12 hours.",
   alternates: {
     canonical: "https://insightmedia.in/contact",
   },
   openGraph: {
-    title: "Contact | InsightMedia",
+    title: "Contact | Insight Media",
     description:
-      "Contact InsightMedia for premium digital solutions. We respond within 12 hours.",
+      "Contact Insight Media for premium digital solutions. We respond within 12 hours.",
     url: "https://insightmedia.in/contact",
     type: "website",
-    siteName: "InsightMedia",
+    siteName: "Insight Media",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact | InsightMedia",
+    title: "Contact | Insight Media",
     description:
-      "Contact InsightMedia for premium digital solutions. We respond within 12 hours.",
+      "Contact Insight Media for premium digital solutions. We respond within 12 hours.",
   },
 };
 

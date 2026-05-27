@@ -32,7 +32,7 @@ export const AboutIntroStrip: React.FC = () => {
 
           {/* Paragraph */}
           <p className="mt-6 sm:mt-8 md:mt-10 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl leading-relaxed font-light">
-            InsightMedia is a creative digital agency focused on premium websites,
+            Insight Media is a creative digital agency focused on premium websites,
             branding, UI/UX, and modern online experiences designed to help brands
             grow faster in the digital world.
           </p>

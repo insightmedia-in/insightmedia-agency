@@ -8,7 +8,7 @@ const faqCategories = [
   {
     category: "Services",
     items: [
-      { q: "What services does InsightMedia offer?", a: "We offer premium web development, UI/UX design, SEO optimization, branding & visual identity, and video editing services. Each service is tailored to help modern businesses build a strong digital presence." },
+      { q: "What services does Insight Media offer?", a: "We offer premium web development, UI/UX design, SEO optimization, branding & visual identity, and video editing services. Each service is tailored to help modern businesses build a strong digital presence." },
       { q: "Do you build custom websites or use templates?", a: "We build fully custom websites using modern frameworks like Next.js and React. Every project is designed and developed from scratch to match your unique brand identity and business goals." },
       { q: "Do you offer SEO optimization?", a: "Yes, we provide comprehensive SEO optimization including technical audits, on-page optimization, keyword strategy, content optimization, local SEO, and Core Web Vitals improvement." },
       { q: "Can you redesign existing websites?", a: "Absolutely. We specialize in redesigning outdated websites into modern, premium digital experiences that improve user engagement and conversion rates." },

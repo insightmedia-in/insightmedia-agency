@@ -12,7 +12,7 @@ const founders = [
     role: "Founder",
     image: "/SIDDHARTH KHURANA.png",
     description:
-      "Leads the creative vision and brand direction of InsightMedia. Focused on building premium digital experiences, modern brand identities, and high-converting solutions that help businesses grow with impact.",
+      "Leads the creative vision and brand direction of Insight Media. Focused on building premium digital experiences, modern brand identities, and high-converting solutions that help businesses grow with impact.",
     expertise: ["Creative Direction", "Brand Strategy", "UI/UX Vision", "Client Relations"],
     socials: { linkedin: "#", twitter: "#" },
   },
@@ -21,7 +21,7 @@ const founders = [
     role: "Co-Founder",
     image: "/hitesh arora.png",
     description:
-      "Drives technical execution and digital innovation at InsightMedia. Focused on building scalable, modern, and conversion-focused experiences that feel seamless across every device.",
+      "Drives technical execution and digital innovation at Insight Media. Focused on building scalable, modern, and conversion-focused experiences that feel seamless across every device.",
     expertise: ["Technical Architecture", "Full-Stack Development", "Performance Optimization", "Digital Innovation"],
     socials: { linkedin: "#", twitter: "#" },
   },
@@ -44,7 +44,7 @@ export function TeamPage() {
           </div>
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight mb-6 dark:text-white light:text-gray-900">
             The Minds Behind{" "}
-            <span className="text-brand-orange dark:text-brand-orange light:text-rose-500">InsightMedia</span>
+            <span className="text-brand-orange dark:text-brand-orange light:text-rose-500">Insight Media</span>
           </h1>
           <p className="dark:text-gray-400 light:text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl mx-auto font-medium">
             Built by creators and operators obsessed with premium design, powerful branding, and high-converting digital experiences that drive real business growth.

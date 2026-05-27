@@ -12,7 +12,7 @@ interface NavItem {
 const navigationItems: NavItem[] = [
   { label: "Featured Projects", sectionId: "projects" },
   { label: "Our Services", sectionId: "services" },
-  { label: "About InsightMedia", sectionId: "about" },
+  { label: "About Insight Media", sectionId: "about" },
   { label: "The Team", sectionId: "team" },
   { label: "FAQ", sectionId: "faq" },
 ];

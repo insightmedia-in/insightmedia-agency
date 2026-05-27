@@ -20,14 +20,14 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = () => {
       role: "Founder",
       image: "/SIDDHARTH KHURANA.png",
       description:
-        "Leads the creative vision and brand direction of InsightMedia. Focused on building premium digital experiences, modern brand identities, and high-converting solutions that help businesses grow with impact.",
+        "Leads the creative vision and brand direction of Insight Media. Focused on building premium digital experiences, modern brand identities, and high-converting solutions that help businesses grow with impact.",
     },
     {
       name: "Hitesh Arora",
       role: "Co-Founder",
       image: "/hitesh arora.png",
       description:
-        "Drives technical execution and digital innovation at InsightMedia. Focused on building scalable, modern, and conversion-focused experiences that feel seamless across every device.",
+        "Drives technical execution and digital innovation at Insight Media. Focused on building scalable, modern, and conversion-focused experiences that feel seamless across every device.",
     },
   ];
 
@@ -49,7 +49,7 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = () => {
 
           <h2 className="mt-4 sm:mt-6 text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-black leading-tight text-white">
             The Minds Behind{" "}
-            <span className="text-brand-orange">InsightMedia</span>
+            <span className="text-brand-orange">Insight Media</span>
           </h2>
 
           <p className="max-w-4xl mx-auto mt-5 sm:mt-7 md:mt-8 text-gray-400 text-sm xs:text-base sm:text-lg leading-relaxed md:leading-relaxed px-2">

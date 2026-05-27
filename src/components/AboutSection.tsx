@@ -21,7 +21,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenModal }) => {
           <div className="w-full max-w-[580px] flex items-center justify-center">
             <img
               src="/photo-1.png"
-              alt="InsightMedia"
+              alt="Insight Media"
               className="w-full max-w-[580px] h-auto object-contain scale-95 xs:scale-100 sm:scale-[1.05] lg:scale-[1.2] xl:scale-[1.3] drop-shadow-2xl transition-transform duration-500 hover:scale-[1.02] xs:hover:scale-[1.05] sm:hover:scale-[1.07] lg:hover:scale-[1.22] xl:hover:scale-[1.32]"
             />
           </div>
@@ -30,7 +30,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenModal }) => {
         {/* Right - Content */}
         <div className="dark:text-white light:text-gray-900 flex flex-col">
           <div className="w-fit">
-            <Badge>About InsightMedia</Badge>
+            <Badge>About Insight Media</Badge>
           </div>
 
           <h3 className="mt-4 xs:mt-5 sm:mt-6 md:mt-8 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-snug sm:leading-tight tracking-tight max-w-3xl dark:text-white light:text-gray-900">
@@ -40,7 +40,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenModal }) => {
           </h3>
 
           <p className="mt-4 xs:mt-5 sm:mt-6 md:mt-7 dark:text-gray-150 light:text-gray-600 text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl font-medium">
-            InsightMedia is a modern creative digital agency focused on building premium
+            Insight Media is a modern creative digital agency focused on building premium
             websites, high-converting user experiences, branding systems, and
             digital solutions for modern businesses and creators.
           </p>

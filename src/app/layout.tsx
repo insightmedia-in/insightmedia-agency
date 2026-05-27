@@ -18,27 +18,27 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://insightmedia.in"),
   title: {
-    default: "InsightMedia | Web Development, SEO & Branding Agency",
-    template: "%s | InsightMedia",
+    default: "Insight Media | Web Development, SEO & Branding Agency",
+    template: "%s | Insight Media",
   },
   description:
-    "InsightMedia helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
+    "Insight Media helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
   keywords: [
     "digital agency",
     "web development",
     "UI/UX design",
     "branding",
     "SEO optimization",
-    "InsightMedia",
+    "Insight Media",
     "premium websites",
     "digital experiences",
     "modern web design",
     "video editing",
     "brand identity",
   ],
-  authors: [{ name: "InsightMedia", url: "https://insightmedia.in" }],
-  creator: "InsightMedia",
-  publisher: "InsightMedia",
+  authors: [{ name: "Insight Media", url: "https://insightmedia.in" }],
+  creator: "Insight Media",
+  publisher: "Insight Media",
   icons: {
     icon: "/favicon-logo.png",
   },
@@ -46,24 +46,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://insightmedia.in",
-    siteName: "InsightMedia",
-    title: "InsightMedia | Web Development, SEO & Branding Agency",
+    siteName: "Insight Media",
+    title: "Insight Media | Web Development, SEO & Branding Agency",
     description:
-      "InsightMedia helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
+      "Insight Media helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "InsightMedia — Premium Digital Agency",
+        alt: "Insight Media — Premium Digital Agency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "InsightMedia | Web Development, SEO & Branding Agency",
+    title: "Insight Media | Web Development, SEO & Branding Agency",
     description:
-      "InsightMedia helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
+      "Insight Media helps businesses grow with premium web development, SEO optimization, branding, UI/UX design, and video editing services.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -95,7 +95,7 @@ export const viewport: Viewport = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "InsightMedia",
+  name: "Insight Media",
   url: "https://insightmedia.in",
   logo: "https://insightmedia.in/favicon-logo.png",
   description:
@@ -118,13 +118,13 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "InsightMedia",
+  name: "Insight Media",
   url: "https://insightmedia.in",
   description:
     "Transform local businesses into modern digital brands through premium websites, branding, UI/UX design, SEO, and high-converting digital experiences.",
   publisher: {
     "@type": "Organization",
-    name: "InsightMedia",
+    name: "Insight Media",
   },
 };
 
@@ -146,28 +146,28 @@ const siteNavigationSchema = {
       name: "About",
       url: "https://insightmedia.in/about",
       description:
-        "Learn about InsightMedia — a modern creative digital agency building premium digital experiences.",
+        "Learn about Insight Media — a modern creative digital agency building premium digital experiences.",
     },
     {
       "@type": "WebPage",
       name: "Team",
       url: "https://insightmedia.in/team",
       description:
-        "Meet the founders and creative minds behind InsightMedia.",
+        "Meet the founders and creative minds behind Insight Media.",
     },
     {
       "@type": "WebPage",
       name: "FAQ",
       url: "https://insightmedia.in/faq",
       description:
-        "Frequently asked questions about InsightMedia's services and process.",
+        "Frequently asked questions about Insight Media's services and process.",
     },
     {
       "@type": "WebPage",
       name: "Contact",
       url: "https://insightmedia.in/contact",
       description:
-        "Get in touch with InsightMedia for premium digital solutions.",
+        "Get in touch with Insight Media for premium digital solutions.",
     },
   ],
 };
@@ -175,7 +175,7 @@ const siteNavigationSchema = {
 const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "InsightMedia",
+  name: "Insight Media",
   url: "https://insightmedia.in",
   image: "https://insightmedia.in/favicon-logo.png",
   description:

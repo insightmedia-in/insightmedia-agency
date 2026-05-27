@@ -125,7 +125,20 @@ html.light .constellation-bg {
 .exceptional-italic {
   font-family: "Playfair Display", serif;
   font-style: italic;
-  @apply text-brand-orange font-normal;
+  color: #ff5a1f !important;
+  font-weight: normal;
+}
+
+.hero-section .exceptional-italic {
+  color: #ff5a1f !important;
+}
+
+html.light .exceptional-italic {
+  color: #ff6b6b !important;
+}
+
+html.light .hero-section .exceptional-italic {
+  color: #ff6b6b !important;
 }
 
 /* ============================================ */
@@ -152,11 +165,6 @@ html.light .constellation-bg {
 .navbar-logo-placeholder {
   width: 260px;
   height: 80px;
-}
-
-/* Light mode exceptional italic - use rose/pink instead */
-html.light .exceptional-italic {
-  @apply text-rose-500;
 }
 
 /* ============================================ */
